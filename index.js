@@ -1,40 +1,22 @@
-var http = require("http");
-var fs = require("fs");
+const express = require("express");
+const app = express();
 
-var server = http.createServer((req, res) => {
-  if (req.url == "/") {
-    fs.readFile("index.html", (err, html) => {
-      if (err) {
-        res.end("Internal Server Error");
-        return;
-      }
-      res.writeHead(200, { "Content-Type": "text/html" });
-      res.write(html);
-      res.end();
-    });
-  } else if (req.url == "/urunler") {
-    fs.readFile("urunler.html", (err, html) => {
-      if (err) {
-        res.end("Internal Server Error");
-        return;
-      }
-
-      res.write(html);
-      res.end();
-    });
-  } else {
-    //
-    fs.readFile("404.html", (err, html) => {
-      if (err) {
-        res.end("Internal Server Error");
-        return;
-      }
-      res.write(html);
-      res.end();
-    });
-  }
+//detail sayfası hazırlarken req params ile çağrıyoruz
+app.use("/products/:id", (req, res) => {
+  res.send(req.params);
+  res.send("Products details");
 });
 
-server.listen(3000, () => {
-  console.log("Node.js server at port 3000");
+app.use("/products", (req, res) => {
+  res.send("products");
+});
+
+//ilk karşılaşılan geldiği için "/" altta durması lazım
+
+app.use("/", (req, res) => {
+  res.send("anasayfa");
+});
+
+app.listen(3000, () => {
+  console.log("Listening go port 3000");
 });
