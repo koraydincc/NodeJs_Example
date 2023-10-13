@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Ürünler Sayfası</h1>
+
+    <ul>
+      <% urunler.forEach(urun => { %> <% if (urun.price >= 50000 &&
+      urun.isActive ) { %>
+      <li>
+        <a href="/products-details/<%= urun.id %>"> <%= urun.name %> </a>
+      </li>
+      <% } %> <% }) %>
+    </ul>
+  </body>
+</html>
