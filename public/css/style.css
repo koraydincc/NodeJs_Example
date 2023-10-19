@@ -1,4 +1,21 @@
-body{
-    background-color: aliceblue;
+.container{
+    display: flex;
+    justify-content: center;
+    ;
+  
 }
-
+.urun{
+    display: flex;
+    flex-direction: row;
+    border: 2px solid grey;
+    border-radius: 20px;
+    width: 500px;
+    margin: 20px;
+    padding: 20px;
+}
+.text-price{
+    font-weight: bold;
+}
+.content{
+    margin: 10px;
+}

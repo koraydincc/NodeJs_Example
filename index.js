@@ -30,7 +30,7 @@ const data = [
 
 // ROUTELAR
 // Ürün detaylarını req.params ile çağırırken
-app.use("/products-details/:id", (req, res) => {
+app.get("/products-details/:id", (req, res) => {
   const urun = data.find((u) => u.id == req.params.id);
 
   res.render("products-details", urun); // name değişkenini EJS şablonuna iletin
@@ -47,7 +47,9 @@ app.get("/products", (req, res) => {
 // Ana sayfa için varsayılan route
 app.get("/", (req, res) => {
   // EJS şablonunu kullanarak ana sayfayı görüntüle
-  res.render("index");
+  res.render("index", {
+    urunler: data,
+  });
 });
 
 app.listen(3000, () => {
